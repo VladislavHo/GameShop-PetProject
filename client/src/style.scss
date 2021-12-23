@@ -1,6 +1,19 @@
-body{
-  background: antiquewhite;
+@import './variables.scss';
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-h1{
-  font-size: 23px;
+body{
+  background: $backgroundGarnetColor;
+}
+
+.wrapper{
+  max-width: 1200px;
+}
+
+section{
+  border-radius: 20px;
+  background-color: $backgroundSection;
 }
