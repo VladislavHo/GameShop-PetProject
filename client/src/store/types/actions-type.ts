@@ -1,0 +1,6 @@
+
+
+export enum Action{
+  UPDATE_USERINFO = 'UPDATE_USERINFO',
+  UPDATE_SETTINGS = 'UPDATE_SETTINGS',
+}

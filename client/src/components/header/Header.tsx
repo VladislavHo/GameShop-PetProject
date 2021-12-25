@@ -33,7 +33,8 @@ export default function Header() {
           <li><NavLink to="*">LINK</NavLink></li>
         </ul>
       </div>
-      <div className="avatar"></div>
+      <button>вход</button>
+      {/* <div className="avatar"></div> */}
       </div>
 
     </header>

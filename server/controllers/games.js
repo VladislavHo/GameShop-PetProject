@@ -1,5 +1,5 @@
 const igdb = require('igdb-api-node').default
-const {YOUR_TWITCH_CLIENT_ID, YOUR_TWITCH_APP_ACCESS_TOKEN} = require("../key")
+const {YOUR_TWITCH_CLIENT_ID, YOUR_TWITCH_APP_ACCESS_TOKEN} = require("../keys")
 
 class Games{
   async getGame (req, res){

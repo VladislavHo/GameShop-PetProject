@@ -1,11 +1,15 @@
 import React from "react";
+import PopapUser from './popap-user/PopapUser'
 import './main.scss'
 
 
 export default function Main() {
+  
+
   return(
     <main>
       <div className="wrapper wrapper-main">
+      {true && (<PopapUser/>)}
         <section className="sale"> 
           {/* <div className="sale-container"> */}
             <div className="sale-wrapper">
