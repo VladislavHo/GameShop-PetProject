@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { UpdateUser } from "../../../store/actions";
+import { ShowModal, UpdateUser } from "../../../store/actions";
 import {addUser} from '../../../store/requests'
 
 
@@ -8,10 +8,7 @@ import "./popap-user.scss";
 
 export default function PopapUser() {
   const dispatch = useDispatch();
-  const select = useSelector((data) => data)
-  useEffect(()=>{
-    console.log(select)
-  })
+
   const [userInfo, setInfoUser] = useState({
     userName: "",
     userPassword: "",
@@ -20,13 +17,15 @@ export default function PopapUser() {
   function createUser(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    dispatch(addUser(UpdateUser({ ...userInfo })))
+    dispatch(ShowModal(false))
+    dispatch(addUser(userInfo))
   }
+
 
   return (
     <div className="window">
       <div className="window-popap">
-        <div className="clouse">x</div>
+        <div className="clouse" onClick={() =>dispatch(ShowModal(false))}>x</div>
         <form onSubmit={(e) => createUser(e)}>
           <p>Имя</p>
           <input

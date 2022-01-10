@@ -4,6 +4,5 @@ import {middleware} from './middleware'
 import reducer from "./reducers";
 
 export const store = createStore(reducer, composeWithDevTools(middleware));
-console.log(store)
 
 

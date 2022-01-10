@@ -6,10 +6,20 @@ export const user:IUserInfo = {
 }
 
 export const settings:ISetting = {
-  basket: []
+  gamesProfile: [],
+  showModal: false,
+  searchGames: [],
+  gameID: null,
+  aboutGame: {},
+  searchAllGames: [],
+  genresGame: [],
+  genresAllGames: []
 }
 
 export const initStore:IStore = {
   user,
   settings
 }
+
+export const genresID = ['id = (5, 33, 10, 12, 13, 15)']
+
