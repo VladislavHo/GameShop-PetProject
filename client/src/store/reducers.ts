@@ -38,17 +38,17 @@ export default function reducer(state: IStore = initStore, action: AllActions) {
     case Action.UPDATE_USERINFO:
       return { ...state, user: { ...action.payload } };
     case Action.SHOW_MODAL:
-      return { ...state, settings: { ...settings, showModal: action.payload } }
+      return { ...state, settings: { ...state.settings, showModal: action.payload } }
     case Action.SEARCH_GAMES:
-      return { ...state, settings: { ...settings, searchGames: action.payload } };
+      return { ...state, settings: { ...state.settings, searchGames: action.payload } };
     case Action.SEARCH_ALL_GAMES:
-      return { ...state, settings: { ...settings, searchGames: action.payload } };
+      return { ...state, settings: { ...state.settings, searchGames: action.payload } };
     case Action.ABOUT_GAME:
-      return { ...state, settings: { ...settings, aboutGame: { ...action.payload } } }
+      return { ...state, settings: { ...state.settings, aboutGame: { ...action.payload } } }
     case Action.ADDED_GENRES_GAME:
-      return { ...state, settings: { ...settings, genresGame: action.payload  } }
+      return { ...state, settings: { ...state.settings, genresGame: action.payload  } }
       case Action.ADD_ALL_GENRES_GAMES:
-        return { ...state, settings: { ...settings, genresGame: action.payload  } }
+        return { ...state, settings: { ...state.settings, genresGame: action.payload  } }
     default:
       return state
   }

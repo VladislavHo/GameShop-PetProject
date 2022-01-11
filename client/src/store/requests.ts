@@ -55,13 +55,13 @@ export function aboutGame(id: number) {
 
 }
 
-export function getAllGamesReq(games:string) {
+export function getSearchGames(games:string) {
   return async(
     dispatch: ThunkDispatch<void, IStore, AnyAction>,
   ) =>{
     try {
       await axios.post(`${URL}/games`,{
-        games: {games, limit: 100}
+        games: {games, limit: 3}
       })
         .then(games => dispatch(SearchAllGames(games.data)))
     } catch (e) {

@@ -33,7 +33,7 @@ class Games{
     }
   }
 
-  async getShowGenresGames(req, res) {
+  async getGenresOfGames(req, res) {
     try{
       const {idList} = req.body
       const response = await igdb(YOUR_TWITCH_CLIENT_ID, YOUR_TWITCH_APP_ACCESS_TOKEN)
@@ -48,7 +48,7 @@ class Games{
     }
   }
 
-  async getGenresGames(req, res) {
+  async getGamesOnGenres(req, res) {
     try{
       const {id} = req.body
       console.log(id)
@@ -57,8 +57,6 @@ class Games{
       .limit(100)
       .where([`genres = ('${id}')`])
       .request(`/games`)
-
-      console.log(response.data)
       return res.send(response.data)
     }
     catch(err) {

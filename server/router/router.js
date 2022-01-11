@@ -9,8 +9,8 @@ router.post("/added-user", Users.addUsers)
 
 router.post("/about-data-game", Games.aboutGame)
 
-router.post("/genres-game", Games.getShowGenresGames)
+router.post("/genres-game", Games.getGenresOfGames)
 
-router.post("/genres-all-game", Games.getGenresGames)
+router.post("/genres-all-game", Games.getGamesOnGenres)
 
 module.exports = router
