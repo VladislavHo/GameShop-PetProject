@@ -7,7 +7,7 @@ import { IStore } from "../../store/types/store-types";
 export default function Genres() {
   const dispatch = useDispatch()
   const { genresGame } = useSelector((data: IStore) => data.settings);
-  console.log(genresGame)
+  
   return (
     <>
       {genresGame.map((el, i) => (

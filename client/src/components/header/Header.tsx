@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import axios from "../../../node_modules/axios/index";
 import { getGameID, SearchGames, ShowModal } from "../../store/actions";
+import { NUMBER_SEARCH_GAMES } from "../../store/initialStore";
 import {
   aboutGame,
   addUser,
-  getSearchGames,
   getGames,
 } from "../../store/requests";
 import { IStore } from "../../store/types/store-types";
@@ -16,30 +16,26 @@ import "./header.scss";
 export default function Header() {
   const dispatch = useDispatch();
   const { user, settings } = useSelector((data: IStore) => data);
-  const [searchGames, setSearchGames] = React.useState({
-    name: '',
-    searchStatus: false
-  });
+  const [nameSearch, setNameSearch] = useState('')
+  const [searchStatus, setSearchStatus] = useState(false)
 
 
   const openSearch = useCallback(()=>{
-    setSearchGames({...searchGames, searchStatus: true})
+    setSearchStatus(true)
   }, [])
 
   const closeSearch = useCallback(()=>{
-    setSearchGames({...searchGames, searchStatus: false})
+    setSearchStatus(false)
   }, [])
 
   function getNameGame(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
     openSearch()
-    dispatch(getSearchGames(searchGames.name))
-    
+    e.preventDefault();
+    dispatch(getGames(nameSearch, NUMBER_SEARCH_GAMES))
   }
 
-  useEffect(()=>{
-    console.log(searchGames.name)
-  }, [searchGames.name])
+
+
   return (
     <header>
       <div className="wrapper wrapper-header">
@@ -51,10 +47,10 @@ export default function Header() {
           <form onSubmit={(e) => getNameGame(e)}>
             <input
               type="search"
-              name={searchGames.name}
-              value={searchGames.name}
+              // value={searchGames.name}
               onChange={(e) => {
-                setSearchGames({...searchGames, name: e.target.value})
+                // setSearchGames({...searchGames, name: e.target.value})
+                setNameSearch(e.target.value)
                 
               }}
             />
@@ -81,7 +77,7 @@ export default function Header() {
           <button onClick={() => dispatch(ShowModal(true))}>вход</button>
         )}
       </div>
-          {searchGames.searchStatus && (<SearchUserGames onClose = {closeSearch} nameSearchGame = {searchGames.name}/>)}
+          {searchStatus && (<SearchUserGames onClose = {closeSearch} nameSearchGame = {nameSearch}/>)}
     </header>
   );
 }

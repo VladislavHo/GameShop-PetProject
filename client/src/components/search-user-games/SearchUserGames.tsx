@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { aboutGame, getGames, getSearchGames } from '../../store/requests'
+import { MAX_LIMIT_SEARCH_GAMES } from '../../store/initialStore'
+import { aboutGame, getGames } from '../../store/requests'
 
 import './search-user-games.scss'
 
@@ -15,7 +16,9 @@ export default function SearchUserGames({onClose, nameSearchGame}) {
   const dispatch = useDispatch()
   const {settings} = useSelector((data:any) => data)
 
-
+  useEffect(()=>{
+    console.log(nameSearchGame)
+  }, [nameSearchGame])
 
   return (
 
@@ -37,7 +40,7 @@ export default function SearchUserGames({onClose, nameSearchGame}) {
             to={"/games"}
             children={"More"}
             onClick={() => {
-              dispatch(getGames(nameSearchGame))
+              dispatch(getGames(nameSearchGame, MAX_LIMIT_SEARCH_GAMES))
               onClose()
             }}
           />

@@ -4,7 +4,6 @@ import { IStore, IUserInfo } from '../store/types/store-types'
 import axios from 'axios';
 import { AboutGame, GenresAllGamesActions, GenresGameActions, SearchAllGames, SearchGames, UpdateUser } from './actions';
 import { AllActions } from './reducers';
-import { settings } from './initialStore';
 
 const URL = 'http://localhost:5000/api'
 
@@ -23,14 +22,14 @@ export function addUser(userInfo: IUserInfo) {
   }
 }
 
-export function getGames(games: string) {
+export function getGames(games, limit) {
   return async (
     dispatch: ThunkDispatch<void, IStore, AnyAction>,
     getState: () => IStore
   ): Promise<void> => {
     try {
       await axios.post(`${URL}/games`, {
-        games : {games, limit: null}
+        games : {games, limit}
       })
         .then(games => dispatch(SearchGames(games.data)))
     } catch (e) {
@@ -55,20 +54,20 @@ export function aboutGame(id: number) {
 
 }
 
-export function getSearchGames(games:string) {
-  return async(
-    dispatch: ThunkDispatch<void, IStore, AnyAction>,
-  ) =>{
-    try {
-      await axios.post(`${URL}/games`,{
-        games: {games, limit: 3}
-      })
-        .then(games => dispatch(SearchAllGames(games.data)))
-    } catch (e) {
-      console.log(e.message)
-    }
-  }
-}
+// export function getSearchGames(games:string) {
+//   return async(
+//     dispatch: ThunkDispatch<void, IStore, AnyAction>,
+//   ) =>{
+//     try {
+//       await axios.post(`${URL}/games`,{
+//         games: {games, limit: 500}
+//       })
+//         .then(games => dispatch(SearchAllGames(games.data)))
+//     } catch (e) {
+//       console.log(e.message)
+//     }
+//   }
+// }
 
 export function gamesOnGenres(id) {
   return async(

@@ -1,15 +1,17 @@
 const igdb = require('igdb-api-node').default
 const {YOUR_TWITCH_CLIENT_ID, YOUR_TWITCH_APP_ACCESS_TOKEN} = require("../keys")
-
 class Games{
   async getGames (req, res){
     try{
-      const {games} = req.body
+      const {games, limit} = req.body.games
       const response = await igdb(YOUR_TWITCH_CLIENT_ID, YOUR_TWITCH_APP_ACCESS_TOKEN)
       .fields(["name", "screenshots.*"])
-      .search(games.games)
-      .limit(games.limit)
+      .search(games)
+      .limit(limit)
+      // .offset(10)
       .request('/games')
+      console.log(response.data)
+    
      return res.send(response.data)
     }
     catch(err) {
@@ -23,9 +25,9 @@ class Games{
       const response = await igdb(YOUR_TWITCH_CLIENT_ID, YOUR_TWITCH_APP_ACCESS_TOKEN)
       .fields(["*"])
       .where([`id = ${id}`])
-      .limit(100)
+      // .limit(1)
       .request('/games')
-
+      console.log(response.data[0].length)
       return res.send(response.data[0])
     }
     catch(err) {
@@ -38,7 +40,7 @@ class Games{
       const {idList} = req.body
       const response = await igdb(YOUR_TWITCH_CLIENT_ID, YOUR_TWITCH_APP_ACCESS_TOKEN)
       .fields(["*"])
-      .limit(100)
+      .limit(500)
       .where(idList)
       .request(`/genres`)
       return res.send(response.data)
@@ -54,9 +56,10 @@ class Games{
       console.log(id)
       const response = await igdb(YOUR_TWITCH_CLIENT_ID, YOUR_TWITCH_APP_ACCESS_TOKEN)
       .fields(["*"])
-      .limit(100)
+      .limit(500)
       .where([`genres = ('${id}')`])
       .request(`/games`)
+      console.log('le', response.data.length)
       return res.send(response.data)
     }
     catch(err) {

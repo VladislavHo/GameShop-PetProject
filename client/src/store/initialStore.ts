@@ -22,4 +22,7 @@ export const initStore:IStore = {
 }
 
 export const genresID = ['id = (5, 33, 10, 12, 13, 15)']
+export const NUMBER_SEARCH_GAMES = 3
+export const SHOW_GAMES_PAGE = 10
+export const MAX_LIMIT_SEARCH_GAMES = 500
 
